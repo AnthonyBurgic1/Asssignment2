@@ -3,8 +3,9 @@ import Link from "next/link";
 export default function AboutPage() {
   return (
     <>
-      <h1>About Recipe Box</h1>
-      <p className="lead">A small Next.js app for collecting the meals you love.</p>
+      <h1>About My Recipe Box</h1>
+      <p className="lead">I built a small Next.js app for collecting meals 
+        that you love and that you can enjoy with your friends and family.</p>
 
       <div className="card">
         <h2 style={{ marginTop: 0 }}>What it does</h2>
