@@ -4,7 +4,7 @@ import { FormEvent, useEffect, useState } from "react";
 import RecipeCard from "@/components/RecipeCard";
 import { Recipe, useRecipes } from "@/context/RecipesContext";
 
-// TheMealDB: free public API, no key required
+// TheMealDB: free public API, no key required // 
 const API = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
 type Meal = Record<string, string | null>;
