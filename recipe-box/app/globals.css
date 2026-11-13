@@ -1,4 +1,18 @@
 :root {
+
+  --blob-1: #f6b98a;
+  --blob-2: #f2d98d;
+  --blob-3: #a9d6b8;
+  --blob-4: #f4a9a0;
+  --blob-opacity: 0.55;
+
+  /* My Dark theme */
+  --blob-1: #b4512a;
+  --blob-2: #6b5a1f;
+  --blob-3: #2c6b4a;
+  --blob-4: #7a2f3b;
+  --blob-opacity: 0.4;
+
   --bg: #faf6ef;
   --surface: #ffffff;
   --text: #2b2a28;
@@ -138,3 +152,38 @@ input:focus, select:focus, textarea:focus, .btn:focus-visible, .nav-link:focus-v
 .fav { background: none; border: 0; font-size: 1.3rem; cursor: pointer; line-height: 1; }
 .error { color: var(--danger); }
 .empty { text-align: center; color: var(--muted); padding: 2rem; }
+
+/* ---------- Animated background ---------- */
+.bg-anim {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  width: 45vmax;
+  height: 45vmax;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: var(--blob-opacity);
+  transition: background 0.6s ease, opacity 0.6s ease;
+  will-change: transform;
+}
+
+.blob-1 { background: var(--blob-1); top: -15%; left: -10%; animation: drift-1 22s ease-in-out infinite alternate; }
+.blob-2 { background: var(--blob-2); top: 10%; right: -15%; animation: drift-2 28s ease-in-out infinite alternate; }
+.blob-3 { background: var(--blob-3); bottom: -20%; left: 15%; animation: drift-3 25s ease-in-out infinite alternate; }
+.blob-4 { background: var(--blob-4); bottom: -10%; right: 5%; width: 35vmax; height: 35vmax; animation: drift-4 31s ease-in-out infinite alternate; }
+
+@keyframes drift-1 { to { transform: translate(30vw, 20vh) scale(1.2); } }
+@keyframes drift-2 { to { transform: translate(-25vw, 30vh) scale(0.85); } }
+@keyframes drift-3 { to { transform: translate(35vw, -25vh) scale(1.15); } }
+@keyframes drift-4 { to { transform: translate(-30vw, -20vh) scale(1.25); } }
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .blob { animation: none; }
+}

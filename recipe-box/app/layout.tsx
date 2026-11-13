@@ -3,6 +3,7 @@ import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { SettingsProvider } from "@/context/SettingsContext";
 import { RecipesProvider } from "@/context/RecipesContext";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 export const metadata: Metadata = {
   title: "Recipe Box",
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <SettingsProvider>
           <RecipesProvider>
+            <AnimatedBackground />
             <div className="shell">
               <NavBar />
               <main className="content">{children}</main>
