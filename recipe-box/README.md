@@ -2,8 +2,9 @@ npm# 🍲 Recipe Box
 
 A multi-page Next.js (App Router) + TypeScript web app for saving, organizing and discovering recipes.
 
-**Live site:** https://YOUR-APP-NAME.onrender.com  <!-- replace after deploying -->
-**GitHub repo:** https://github.com/AnthonyBurgic1/Asssignment2 
+Live site: https://YOUR-APP-NAME.onrender.com 
+
+GitHub repo: https://github.com/AnthonyBurgic1/Asssignment2 
 
 ## Purpose
 
@@ -12,7 +13,8 @@ Recipe Box lets you keep a personal collection of recipes, mark favorites, and d
 
 ## Pages
 
-| Route | Description |
+Route / Description:
+
 Home: 
 greeting, live stats and your favorite recipes 
 
