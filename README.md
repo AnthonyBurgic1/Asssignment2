@@ -15,7 +15,10 @@ Recipe Box lets you keep a personal collection of recipes, mark favorites, and d
 
 ## Pages
 
-| Route | Description |
+Route:
+
+Description:
+
 Home: 
 greeting, live stats and your favorite recipes 
 
