@@ -2,7 +2,7 @@ npm# 🍲 Recipe Box
 
 A multi-page Next.js (App Router) + TypeScript web app for saving, organizing and discovering recipes.
 
-Live site: https://YOUR-APP-NAME.onrender.com 
+Live site: https://asssignment2ab.vercel.app
 
 GitHub repo: https://github.com/AnthonyBurgic1/Asssignment2 
 
