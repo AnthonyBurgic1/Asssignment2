@@ -13,10 +13,9 @@ export default function AboutPage() {
         <h2 style={{ marginTop: 0 }}>What does my Recipe Box do?</h2>
         <ul>
           <li>Save your own recipes and edit or delete them at any time!</li>
-          <li>
-            Mark your favorite recipes and see them on the homepage so you
-            always know where they are!
+          <li>Mark your favorite recipes and see them on the homepage so you always know where they are!
           </li>
+
           <li>
             Discover new recipes for free with the{" "}
             <a href="https://www.themealdb.com/api.php" target="_blank" rel="noreferrer">
@@ -29,10 +28,9 @@ export default function AboutPage() {
             <Link href="/settings"><u>Settings</u></Link>.
           </li>
         </ul>
-
         <h2>Built with</h2>
         <p className="muted">
-          Next.js (App Router) · React hooks (useState, useEffect, useContext) · TypeScript · localStorage
+          Next.js (App Router) React hooks (useState, useEffect, useContext) TypeScript localStorage
         </p>
       </div>
     </>
