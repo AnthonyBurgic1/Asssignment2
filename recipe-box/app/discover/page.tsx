@@ -109,7 +109,7 @@ export default function DiscoverPage() {
       {loading && <p className="muted">Loading recipes…</p>}
       {error && <p className="error">Could not load recipes: {error}</p>}
       {!loading && !error && results.length === 0 && (
-        <p className="empty card">No meals found for "{active}".</p>
+        <p className="empty card">No meals found for &quot;{active}&quot;.</p>
       )}
 
       <div className="grid">
