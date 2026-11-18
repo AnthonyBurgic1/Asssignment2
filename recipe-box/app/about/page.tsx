@@ -14,7 +14,7 @@ export default function AboutPage() {
         <ul>
           <li>Save your own recipes and edit or delete them at any time!</li>
           <li>
-            Mark your favorite recipes and see them on the homepage, so you
+            Mark your favorite recipes and see them on the homepage so you
             always know where they are!
           </li>
           <li>
