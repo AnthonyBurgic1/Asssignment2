@@ -3,6 +3,7 @@
 import { useState } from "react";
 import RecipeCard from "@/components/RecipeCard";
 import RecipeForm from "@/components/RecipeForm";
+import { useToast } from "@/context/ToastContext";
 import { Recipe, useRecipes } from "@/context/RecipesContext";
 
 export default function RecipesPage() {
@@ -14,21 +15,24 @@ export default function RecipesPage() {
     `${r.title} ${r.category} ${r.ingredients}`.toLowerCase().includes(query.toLowerCase())
   );
 
-  const handleSubmit = (values: Omit<Recipe, "id" | "favorite">) => {
-    if (editing) {
-      updateRecipe(editing.id, values);
-      setEditing(null);
-    } else {
-      addRecipe(values);
-    }
-  };
+const handleSubmit = (values: Omit<Recipe, "id" | "favorite">) => {
+  if (editing) {
+    updateRecipe(editing.id, values);
+    setEditing(null);
+    showToast("Recipe updated ✓");
+  } else {
+    addRecipe(values);
+    showToast("Recipe added ✓");
+  }
+};
 
-  const handleDelete = (id: string) => {
-    if (confirm("Delete this recipe?")) {
-      deleteRecipe(id);
-      if (editing?.id === id) setEditing(null);
-    }
-  };
+const handleDelete = (id: string) => {
+  if (confirm("Delete this recipe?")) {
+    deleteRecipe(id);
+    if (editing?.id === id) setEditing(null);
+    showToast("Recipe deleted 🗑️");
+  }
+};
 
   return (
     <>
@@ -69,3 +73,7 @@ export default function RecipesPage() {
     </>
   );
 }
+function showToast(arg0: string) {
+  throw new Error("Function not implemented.");
+}
+

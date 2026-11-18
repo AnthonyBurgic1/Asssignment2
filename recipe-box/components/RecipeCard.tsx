@@ -1,4 +1,5 @@
 import type { Recipe } from "@/context/RecipesContext";
+import type { CSSProperties } from "react";
 
 type Props = {
   recipe: Recipe;
@@ -9,7 +10,23 @@ type Props = {
   onAction?: (recipe: Recipe) => void;
 };
 
-// Child component: the parent passes a recipe plus callbacks as props
+const CATEGORY_COLORS: Record<string, string> = {
+  Breakfast: "#d18a00",
+  Lunch: "#2f9d6a",
+  Dinner: "#d9622b",
+  Pasta: "#c8453b",
+  Dessert: "#c2549c",
+  Snack: "#4f7bd9",
+};
+
+function colorFor(category: string) {
+  if (CATEGORY_COLORS[category]) return CATEGORY_COLORS[category];
+  let h = 0;
+  for (const c of category) h = (h * 31 + c.charCodeAt(0)) % 360;
+  return `hsl(${h} 60% 45%)`;
+}
+
+// The Child component // 
 export default function RecipeCard({
   recipe,
   onToggleFavorite,
@@ -21,7 +38,7 @@ export default function RecipeCard({
   return (
     <article className="card recipe-card">
       {recipe.image && (
-        // eslint-disable-next-line @next/next/no-img-element
+
         <img src={recipe.image} alt={recipe.title} loading="lazy" />
       )}
       <div className="body">
@@ -31,11 +48,11 @@ export default function RecipeCard({
             <button
               className="fav"
               onClick={() => onToggleFavorite(recipe.id)}
-              aria-label={recipe.favorite ? "Remove from favorites" : "Add to favorites"}
-            >
+              aria-label={recipe.favorite ? "Remove from favorites" : "Add to favorites"}>
               {recipe.favorite ? "⭐" : "☆"}
             </button>
           )}
+          
         </div>
         <div className="row">
           <span className="tag">{recipe.category}</span>

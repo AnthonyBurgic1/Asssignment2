@@ -1,29 +1,23 @@
 :root {
 
-  --blob-1: #f6b98a;
-  --blob-2: #f2d98d;
-  --blob-3: #a9d6b8;
-  --blob-4: #f4a9a0;
-  --blob-opacity: 0.55;
+  --shadow: 0 6px 20px rgba(60, 40, 20, 0.12);
+  --hero-1: #c2491b;
+  --hero-2: #e0782f;
+
+  --cloth: rgba(217, 98, 43, 0.10);
+  --glow-1: #f6b98a;
+  --glow-2: #f2d98d;
+  --item-opacity: 0.55;
 
   /* My Dark theme */
-  --blob-1: #b4512a;
-  --blob-2: #6b5a1f;
-  --blob-3: #2c6b4a;
-  --blob-4: #7a2f3b;
-  --blob-opacity: 0.4;
+  --cloth: rgba(240, 138, 84, 0.07);
+  --glow-1: #b4512a;
+  --glow-2: #6b5a1f;
+  --item-opacity: 0.32;
 
-  --bg: #faf6ef;
-  --surface: #ffffff;
-  --text: #2b2a28;
-  --muted: #6f6a62;
-  --border: #e6dfd2;
-  --accent: #d9622b;
-  --accent-dark: #b34d1e;
-  --side: #23352b;
-  --side-text: #e8efe9;
-  --danger: #c0392b;
-  --radius: 14px;
+  --shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --hero-1: #6e2a10;
+  --hero-2: #b4512a;
 }
 
 :root {
@@ -50,11 +44,11 @@ body {
 
 a { color: inherit; text-decoration: none; }
 
-/* ---------- Layout ---------- */
+/* ---- Layout ---- */
 .shell { display: flex; min-height: 100vh; }
 .content { flex: 1; padding: 2rem clamp(1rem, 4vw, 3rem); max-width: 1100px; width: 100%; margin: 0 auto; }
 
-/* ---------- Sidebar nav ---------- */
+/* ----Sidebar nav ---- */
 .sidebar {
   width: 230px;
   flex-shrink: 0;
@@ -86,7 +80,7 @@ a { color: inherit; text-decoration: none; }
   .sidebar-foot { display: none; }
 }
 
-/* ---------- Typography / shared ---------- */
+/* ----Typography / shared ---- */
 h1 { margin: 0 0 0.25rem; font-size: clamp(1.6rem, 4vw, 2.2rem); }
 h2 { margin: 2rem 0 0.75rem; }
 .lead { color: var(--muted); margin: 0 0 1.5rem; }
@@ -105,7 +99,7 @@ h2 { margin: 2rem 0 0.75rem; }
 .stat .num { font-size: 2.2rem; font-weight: 700; color: var(--accent); }
 .stat .lbl { color: var(--muted); font-size: 0.9rem; }
 
-/* ---------- Buttons & forms ---------- */
+/* ----Buttons & forms ---- */
 .btn {
   display: inline-block;
   padding: 0.55rem 1rem;
@@ -142,7 +136,7 @@ input:focus, select:focus, textarea:focus, .btn:focus-visible, .nav-link:focus-v
 .row { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
 .row.between { justify-content: space-between; }
 
-/* ---------- Recipe card ---------- */
+/* ----Recipe card ----- */
 .recipe-card { display: flex; flex-direction: column; gap: 0.5rem; padding: 0; overflow: hidden; }
 .recipe-card img { width: 100%; height: 170px; object-fit: cover; }
 .recipe-card .body { padding: 1rem 1.25rem 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
@@ -153,7 +147,7 @@ input:focus, select:focus, textarea:focus, .btn:focus-visible, .nav-link:focus-v
 .error { color: var(--danger); }
 .empty { text-align: center; color: var(--muted); padding: 2rem; }
 
-/* ---- My Animated background ----- */
+/* ---- My Animated background of my Kitchen ----- */
 .bg-anim {
   position: fixed;
   inset: 0;
@@ -162,27 +156,148 @@ input:focus, select:focus, textarea:focus, .btn:focus-visible, .nav-link:focus-v
   pointer-events: none;
 }
 
-.blob {
+/* Here is the tablecloth that slowly slides */
+.cloth {
   position: absolute;
-  width: 45vmax;
-  height: 45vmax;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: var(--blob-opacity);
-  transition: background 0.6s ease, opacity 0.6s ease;
-  will-change: transform;
+  inset: -80px;
+  background-image:
+    repeating-linear-gradient(0deg, var(--cloth) 0 40px, transparent 40px 80px),
+    repeating-linear-gradient(90deg, var(--cloth) 0 40px, transparent 40px 80px);
+  animation: cloth-pan 40s linear infinite;
+  transition: background-image 0.6s ease;
+}
+@keyframes cloth-pan {
+  to { transform: translate(80px, 80px); }
 }
 
-.blob-1 { background: var(--blob-1); top: -15%; left: -10%; animation: drift-1 22s ease-in-out infinite alternate; }
-.blob-2 { background: var(--blob-2); top: 10%; right: -15%; animation: drift-2 28s ease-in-out infinite alternate; }
-.blob-3 { background: var(--blob-3); bottom: -20%; left: 15%; animation: drift-3 25s ease-in-out infinite alternate; }
-.blob-4 { background: var(--blob-4); bottom: -10%; right: 5%; width: 35vmax; height: 35vmax; animation: drift-4 31s ease-in-out infinite alternate; }
+/* Warm stovetop glows */
+.glow {
+  position: absolute;
+  width: 50vmax;
+  height: 50vmax;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.45;
+  will-change: transform;
+}
+.glow-1 { background: var(--glow-1); top: -20%; left: -10%; animation: glow-a 24s ease-in-out infinite alternate; }
+.glow-2 { background: var(--glow-2); bottom: -25%; right: -10%; animation: glow-b 30s ease-in-out infinite alternate; }
+@keyframes glow-a { to { transform: translate(25vw, 20vh) scale(1.2); } }
+@keyframes glow-b { to { transform: translate(-25vw, -20vh) scale(1.15); } }
 
-@keyframes drift-1 { to { transform: translate(30vw, 20vh) scale(1.2); } }
-@keyframes drift-2 { to { transform: translate(-25vw, 30vh) scale(0.85); } }
-@keyframes drift-3 { to { transform: translate(35vw, -25vh) scale(1.15); } }
-@keyframes drift-4 { to { transform: translate(-30vw, -20vh) scale(1.25); } }
+/* Ingredients rising like steam */
+.float-item {
+  position: absolute;
+  top: 0;
+  opacity: var(--item-opacity);
+  animation: rise linear infinite;
+  will-change: transform;
+  transition: opacity 0.6s ease;
+  user-select: none;
+}
+@keyframes rise {
+  0%   { transform: translate(0, 110vh) rotate(0deg); }
+  50%  { transform: translate(var(--sway), 50vh) rotate(180deg); }
+  100% { transform: translate(0, -20vh) rotate(360deg); }
+}
+
+/* Fewer items on phones, and none for people who prefer less motion */
+@media (max-width: 800px) {
+  .float-item:nth-child(n + 9) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cloth, .glow, .float-item { animation: none; }
+  .float-item { top: 30%; }
+}
+
+/* ---- Serif headings ---- */
+h1, h2, h3, .brand {
+  font-family: var(--font-heading), Georgia, "Times New Roman", serif;
+}
+
+/* ----Page transition ---- */
+.page { animation: page-in 0.45s ease both; }
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(14px); }
+}
+
+/* ---- Hero banner ---- */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  border-radius: 22px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--hero-1), var(--hero-2));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.hero h1 { margin: 0.25rem 0 0.5rem; font-size: clamp(1.9rem, 5vw, 3rem); }
+.hero .eyebrow { margin: 0; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.8rem; opacity: 0.85; }
+.hero-sub { margin: 0 0 1.25rem; max-width: 34rem; opacity: 0.95; }
+.hero .btn { background: rgba(255, 255, 255, 0.16); color: #fff; border-color: rgba(255, 255, 255, 0.55); }
+.hero .btn.primary { background: #fff; color: #8a3512; border-color: #fff; }
+.hero-art { font-size: clamp(4rem, 12vw, 7.5rem); animation: bob 4s ease-in-out infinite; }
+@keyframes bob {
+  50% { transform: translateY(-12px) rotate(-6deg); }
+}
+@media (max-width: 600px) {
+  .hero-art { display: none; }
+}
+
+/* ----Card hover ---- */
+.recipe-card {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.recipe-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.recipe-card img { transition: transform 0.5s ease; }
+.recipe-card:hover img { transform: scale(1.07); }
+
+/* ----- Colored category tags (override the old .tag rule) ----- */
+.tag {
+  background: color-mix(in srgb, var(--tag, var(--accent)) 16%, transparent);
+  color: color-mix(in srgb, var(--tag, var(--accent)) 70%, var(--text));
+  border: 1px solid color-mix(in srgb, var(--tag, var(--accent)) 35%, transparent);
+}
+
+/* ---- Toasts ---- */
+.toasts {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 50;
+}
+.toast {
+  background: var(--side);
+  color: var(--side-text);
+  padding: 0.7rem 1.1rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--accent);
+  box-shadow: var(--shadow);
+  animation: toast-in 0.3s ease, toast-out 0.3s ease 2.5s forwards;
+}
+@keyframes toast-in { from { opacity: 0; transform: translateY(12px); } }
+@keyframes toast-out { to { opacity: 0; transform: translateY(12px); } }
+@media (max-width: 600px) {
+  .toasts { left: 1rem; right: 1rem; bottom: 1rem; }
+}
+
+/* ----- Footer ----- */
+.footer {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .blob { animation: none; }
+  .page, .hero-art, .toast { animation: none; }
 }

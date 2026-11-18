@@ -18,13 +18,25 @@ export default function HomePage() {
 
   return (
     <>
-      <h1>Welcome back, {cookName}! 👋</h1>
-      <p className="lead">Your personal recipe collection, always within reach.</p>
+     <section className="hero">
+        <div>
+    
+    My Recipe Box
 
-      <div className="row">
-        <Link href="/recipes" className="btn primary">Add a recipe</Link>
-        <Link href="/discover" className="btn">Find new ideas</Link>
-      </div>
+          <p className="eyebrow"></p>
+          <h1>Welcome back, {cookName}!</h1>
+          <p className="hero-sub">
+
+      Here you can save the meals you love, discover new ones, and always know whats for dinner 
+
+          </p>
+          <div className="row">
+            <Link href="/recipes" className="btn primary">Add a recipe</Link>
+            <Link href="/discover" className="btn">Find new ideas</Link>
+          </div>
+        </div>
+        <div className="hero-art" aria-hidden="true">🍲</div>
+      </section>
 
       <div className="stats">
         <StatBadge label="Recipes saved" value={loaded ? recipes.length : "…"} />
@@ -34,8 +46,12 @@ export default function HomePage() {
       </div>
 
       <h2>⭐ Your favorites</h2>
+
       {favorites.length === 0 ? (
-        <p className="empty card">No favorites yet — tap the star on any recipe.</p>
+        <p className="empty card">
+        
+      No favorites yet — tap the star on any recipe.</p>
+
       ) : (
         <div className="grid">
           {favorites.map((r) => (

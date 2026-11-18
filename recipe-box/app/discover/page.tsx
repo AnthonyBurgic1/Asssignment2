@@ -3,8 +3,9 @@
 import { FormEvent, useEffect, useState } from "react";
 import RecipeCard from "@/components/RecipeCard";
 import { Recipe, useRecipes } from "@/context/RecipesContext";
+import { useToast } from "@/context/ToastContext";
 
-// TheMealDB: free public API, no key required // 
+// TheMealDB: free public API, no key required //
 const API = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
 type Meal = Record<string, string | null>;
@@ -30,12 +31,13 @@ function mealToRecipe(m: Meal): Recipe {
 
 export default function DiscoverPage() {
   const { recipes, addRecipe } = useRecipes();
+  const { showToast } = useToast();
   const [term, setTerm] = useState("chicken");
   const [results, setResults] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Fetch whenever the active search term changes
+  // Fetch whenever the active search term changes // 
   const [active, setActive] = useState("chicken");
   useEffect(() => {
     let cancelled = false;
@@ -48,7 +50,8 @@ export default function DiscoverPage() {
         const data = await res.json();
         if (!cancelled) setResults((data.meals ?? []).map(mealToRecipe));
       } catch (e) {
-        if (!cancelled) setError(e instanceof Error ? e.message : "Something went wrong");
+        if (!cancelled)
+          setError(e instanceof Error ? e.message : "Something went wrong");
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -76,14 +79,21 @@ export default function DiscoverPage() {
       instructions: r.instructions,
       image: r.image,
     });
+    showToast(`Saved "${r.title}" \u2713`);
   };
 
   return (
     <>
       <h1>🔍 Discover</h1>
-      <p className="lead">Search thousands of meals from TheMealDB and save them to your box.</p>
+      <p className="lead">
+        Search thousands of meals from TheMealDB and save them to your box.
+      </p>
 
-      <form className="row" onSubmit={onSearch} style={{ marginBottom: "1.5rem" }}>
+      <form
+        className="row"
+        onSubmit={onSearch}
+        style={{ marginBottom: "1.5rem" }}
+      >
         <input
           style={{ flex: 1, minWidth: 200 }}
           value={term}
@@ -91,13 +101,15 @@ export default function DiscoverPage() {
           placeholder="Try pasta, beef, salmon…"
           aria-label="Search meals"
         />
-        <button className="btn primary" type="submit">Search</button>
+        <button className="btn primary" type="submit">
+          Search
+        </button>
       </form>
 
       {loading && <p className="muted">Loading recipes…</p>}
       {error && <p className="error">Could not load recipes: {error}</p>}
       {!loading && !error && results.length === 0 && (
-        <p className="empty card">No meals found for “{active}”.</p>
+        <p className="empty card">No meals found for "{active}".</p>
       )}
 
       <div className="grid">
@@ -105,7 +117,7 @@ export default function DiscoverPage() {
           <RecipeCard
             key={r.id}
             recipe={r}
-            actionLabel={alreadySaved(r) ? "✓ Saved" : "Save to my box"}
+            actionLabel={alreadySaved(r) ? "\u2713 Saved" : "Save to my box"}
             onAction={save}
           />
         ))}
