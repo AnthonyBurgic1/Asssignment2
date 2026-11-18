@@ -1,4 +1,4 @@
-npm# 🍲 Recipe Box
+npm# Recipe Box
 
 A multi-page Next.js (App Router) + TypeScript web app for saving, organizing and discovering recipes.
 
