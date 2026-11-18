@@ -10,8 +10,8 @@ export default function AboutPage() {
       <div className="card">
         <h2 style={{ marginTop: 0 }}>What does my Recipe Box Do? </h2>
         <ul>
-          <li>My Recipe box let's you save your own recipes and edit or delete them at any time !</li>
-          <li>We also let you mark your favorites recipes and allow to display them on the homepage, so that you always know were they are !</li>
+          <li>My Recipe box lets you save your own recipes and edit or delete them at any time !</li>
+          <li>We also let you mark your favorites recipes and allow to display them on the homepage so that you always know were they are !</li>
           <li>
             Discover new meals recipes for free here <a href="https://www.themealdb.com/api.php" target="_blank" rel="noreferrer"><u>TheMealDB API</u></a> and save them with one click.
           </li>
